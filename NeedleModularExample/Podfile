@@ -3,8 +3,8 @@ platform :ios, '13.0'
 target 'NeedleModularExample' do
   use_frameworks!
 	
-  pod 'NeedleFoundation'
-  
+  pod 'NeedleFoundation', :git => 'https://github.com/uber/needle', :tag => 'v0.24.0'
+
   pod 'Core', :path => 'DevPods/Core'
   pod 'AuthTabBar', :path => 'DevPods/AuthTabBar'
   pod 'Chat', :path => 'DevPods/Chat'

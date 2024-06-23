@@ -1,6 +1,6 @@
 import Foundation
 
-protocol IChatService {
+public protocol IChatService {
     
 }
 
