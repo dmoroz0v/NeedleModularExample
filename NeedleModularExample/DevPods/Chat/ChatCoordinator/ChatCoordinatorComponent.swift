@@ -26,9 +26,9 @@ public class ChatCoordinatorComponent: BootstrapComponent, IChatCoordinatorCompo
         ChatListComponent(parent: self)
     }
     
-    public lazy var chatService: IChatService = {
-        ChatService()
-    }()
+    public var chatService: IChatService {
+        shared { ChatService() }
+    }
     
     public var logger: ILogger {
         dependencies.logger
