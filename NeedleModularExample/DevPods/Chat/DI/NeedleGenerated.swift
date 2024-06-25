@@ -12,6 +12,10 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
     return component.parent
 }
 
+private func parent2(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Scope {
+    return component.parent.parent
+}
+
 // MARK: - Providers
 
 #if !NEEDLE_DYNAMIC
@@ -31,6 +35,19 @@ private class ChatListDependency39d1fc1f063e60e447a7Provider: ChatListDependency
 /// ^->ChatCoordinatorComponent->ChatListComponent
 private func factoryabd00caea3eae6c54a751569e3ab5496b68a7133(_ component: NeedleFoundation.Scope) -> AnyObject {
     return ChatListDependency39d1fc1f063e60e447a7Provider(chatCoordinatorComponent: parent1(component) as! ChatCoordinatorComponent)
+}
+private class ChatSubmoduleDependency4edf030ef7f526851d60Provider: ChatSubmoduleDependency {
+    var logger: ILogger {
+        return chatCoordinatorComponent.logger
+    }
+    private let chatCoordinatorComponent: ChatCoordinatorComponent
+    init(chatCoordinatorComponent: ChatCoordinatorComponent) {
+        self.chatCoordinatorComponent = chatCoordinatorComponent
+    }
+}
+/// ^->ChatCoordinatorComponent->ChatComponent->ChatSubmoduleComponent
+private func factoryd3c14eff465d108e8adf791e0ccd04d945702a21(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return ChatSubmoduleDependency4edf030ef7f526851d60Provider(chatCoordinatorComponent: parent2(component) as! ChatCoordinatorComponent)
 }
 private class ChatDependency030aeaa3d2103d378eb9Provider: ChatDependency {
     var logger: ILogger {
@@ -56,10 +73,16 @@ extension ChatListComponent: Registration {
         keyPathToName[\ChatListDependency.chatService] = "chatService-IChatService"
     }
 }
+extension ChatSubmoduleComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\ChatSubmoduleDependency.logger] = "logger-ILogger"
+    }
+}
 extension ChatComponent: Registration {
     public func registerItems() {
         keyPathToName[\ChatDependency.logger] = "logger-ILogger"
         keyPathToName[\ChatDependency.chatService] = "chatService-IChatService"
+
     }
 }
 extension ChatCoordinatorComponent: Registration {
@@ -86,6 +109,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 @inline(never) private func register1() {
     registerProviderFactory("^->ChatCoordinatorComponent->ChatListComponent", factoryabd00caea3eae6c54a751569e3ab5496b68a7133)
+    registerProviderFactory("^->ChatCoordinatorComponent->ChatComponent->ChatSubmoduleComponent", factoryd3c14eff465d108e8adf791e0ccd04d945702a21)
     registerProviderFactory("^->ChatCoordinatorComponent->ChatComponent", factory9523f099c5b34b02734d1569e3ab5496b68a7133)
     registerProviderFactory("^->ChatCoordinatorComponent", factoryEmptyDependencyProvider)
 }

@@ -25,11 +25,11 @@ public class ChatCoordinatorComponent: BootstrapComponent, IChatCoordinatorCompo
     var chatListComponent: IChatListComponent {
         ChatListComponent(parent: self)
     }
-    
+
     public var chatService: IChatService {
         shared { ChatService() }
     }
-    
+
     public var logger: ILogger {
         dependencies.logger
     }
