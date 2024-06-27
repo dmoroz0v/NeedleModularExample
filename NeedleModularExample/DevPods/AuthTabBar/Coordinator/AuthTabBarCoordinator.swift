@@ -1,19 +1,20 @@
 import Foundation
-import ChatInterfaces
 import Core
+import Chat
 
-public protocol IAuthTabBarCoordinator {}
+public protocol IAuthTabBarCoordinator {
+    func action()
+}
 
 class AuthTabBarCoordinator: BaseCoordinator, IAuthTabBarCoordinator {
-    private let chatCoordinatorAssembly: IChatCoordinatorAssembly
+    private let chatCoordinatorAssembly: ChatCoordinatorAssembly
     
-    init(scope: Any, chatCoordinatorAssembly: IChatCoordinatorAssembly) {
+    init(scope: Any, chatCoordinatorAssembly: ChatCoordinatorAssembly) {
         self.chatCoordinatorAssembly = chatCoordinatorAssembly
         super.init(scope: scope)
     }
     
-    func setup() {
-        let chatCoordinator = chatCoordinatorAssembly.assemble()
-        print(chatCoordinator)
+    func action() {
+        chatCoordinatorAssembly.assemble().action()
     }
 }

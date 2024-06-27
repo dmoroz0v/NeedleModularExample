@@ -1,21 +1,13 @@
 import NeedleFoundation
-import ChatInterfaces
+import Chat
 
-public protocol AuthTabBarCoordinatorDependency {
-    var chatCoordinatorAssembly: IChatCoordinatorAssembly { get }
+public protocol AuthTabBarCoordinatorDependency: Dependency {
 }
 
-protocol IAuthTabBarCoordinatorComponent {
-    var chatCoordinatorAssembly: IChatCoordinatorAssembly { get }
-}
+public class AuthTabBarCoordinatorComponent: Component<AuthTabBarCoordinatorDependency> {
 
-public class AuthTabBarCoordinatorComponent: BootstrapComponent, IAuthTabBarCoordinatorComponent {
-    
-    private let dependencies: AuthTabBarCoordinatorDependency
-    
-    public init(dependencies: AuthTabBarCoordinatorDependency) {
-        self.dependencies = dependencies
+    public var chatCoordinatorAssembly: ChatCoordinatorAssembly {
+        ChatCoordinatorAssembly(componentProvider: ChatCoordinatorComponent(parent: self))
     }
-    
-    var chatCoordinatorAssembly: IChatCoordinatorAssembly { dependencies.chatCoordinatorAssembly }
+
 }

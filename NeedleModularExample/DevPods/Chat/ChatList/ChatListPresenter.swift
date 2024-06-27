@@ -1,7 +1,9 @@
 import Foundation
 import Core
 
-protocol IChatListPresenter {}
+protocol IChatListPresenter {
+    func action()
+}
 
 class ChatListPresenter: BasePresenter, IChatListPresenter {
     private let logger: ILogger
@@ -11,5 +13,10 @@ class ChatListPresenter: BasePresenter, IChatListPresenter {
         self.chatService = chatService
         self.logger = logger
         super.init(scope: scope)
+    }
+
+    func action() {
+        print("ChatListPresenter", logger)
+        print("ChatListPresenter", chatService)
     }
 }

@@ -1,16 +1,26 @@
 import UIKit
 import Chat
 import AuthTabBar
+import MySDK
+
+class MySDKDependenciesImpl: MySDKDependencies {
+
+}
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var mySDKComponent: MySDKComponent!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        registerProviderFactories()
-        Chat.registerProviderFactories()
-        AuthTabBar.registerProviderFactories()
+        MySDK.registerProviderFactories()
+
+        mySDKComponent = MySDKComponent(dependencies: MySDKDependenciesImpl())
+
+        print(mySDKComponent.logger)
+        mySDKComponent.chatCoordinatorAssembly.assemble().action()
+        mySDKComponent.authTabBarCoordinatorAssembly.assemble().action()
+
         return true
     }
 

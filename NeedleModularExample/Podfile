@@ -8,6 +8,6 @@ target 'NeedleModularExample' do
   pod 'Core', :path => 'DevPods/Core'
   pod 'AuthTabBar', :path => 'DevPods/AuthTabBar'
   pod 'Chat', :path => 'DevPods/Chat'
-  pod 'ChatInterfaces', :path => 'DevPods/ChatInterfaces'
+  pod 'MySDK', :path => 'DevPods/MySDK'
 
 end

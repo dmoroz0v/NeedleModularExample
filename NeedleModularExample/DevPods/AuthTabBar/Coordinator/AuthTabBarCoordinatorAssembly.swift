@@ -1,22 +1,14 @@
 import Foundation
-import ChatInterfaces
+import Chat
 
-public protocol IAuthTabBarCoordinatorAssembly {
-    func assemble() -> IAuthTabBarCoordinator
-}
+public class AuthTabBarCoordinatorAssembly {
 
-public class AuthTabBarCoordinatorAssembly: IAuthTabBarCoordinatorAssembly {
-    
-    private let componentProvider: () -> (IAuthTabBarCoordinatorComponent)
-    
-    public init(componentProvider: @escaping () -> (AuthTabBarCoordinatorComponent)) {
+    private let componentProvider: () -> (AuthTabBarCoordinatorComponent)
+
+    public init(componentProvider: @escaping @autoclosure () -> (AuthTabBarCoordinatorComponent)) {
         self.componentProvider = componentProvider
     }
-    
-    init(componentProvider: @escaping () -> (IAuthTabBarCoordinatorComponent)) {
-        self.componentProvider = componentProvider
-    }
-    
+
     public func assemble() -> IAuthTabBarCoordinator {
         let component = componentProvider()
         let coordinator = AuthTabBarCoordinator(

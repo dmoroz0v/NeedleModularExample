@@ -1,36 +1,21 @@
 import NeedleFoundation
 import Core
 
-public protocol ChatCoordinatorDependency {
+public protocol ChatCoordinatorDependency: Dependency {
     var logger: ILogger { get }
 }
 
-protocol IChatCoordinatorComponent {
-    var chatComponent: IChatComponent { get }
-    var chatListComponent: IChatListComponent { get }
-}
+public class ChatCoordinatorComponent: Component<ChatCoordinatorDependency> {
 
-public class ChatCoordinatorComponent: BootstrapComponent, IChatCoordinatorComponent {
-    
-    private let dependencies: ChatCoordinatorDependency
-    
-    public init(dependencies: ChatCoordinatorDependency) {
-        self.dependencies = dependencies
+    public var chatAssembly: ChatAssembly {
+        ChatAssembly(componentProvider: ChatComponent(parent: self))
     }
     
-    var chatComponent: IChatComponent {
-        ChatComponent(parent: self)
-    }
-    
-    var chatListComponent: IChatListComponent {
-        ChatListComponent(parent: self)
+    public var chatListAssembly: ChatListAssembly {
+        ChatListAssembly(componentProvider: ChatListComponent(parent: self))
     }
 
     public var chatService: IChatService {
         shared { ChatService() }
-    }
-
-    public var logger: ILogger {
-        dependencies.logger
     }
 }

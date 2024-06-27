@@ -1,15 +1,10 @@
 import Foundation
-import ChatInterfaces
 
-public class ChatCoordinatorAssembly: IChatCoordinatorAssembly {
+public class ChatCoordinatorAssembly {
     
-    private let componentProvider: () -> (IChatCoordinatorComponent)
+    private let componentProvider: () -> (ChatCoordinatorComponent)
     
-    public init(componentProvider: @escaping () -> (ChatCoordinatorComponent)) {
-        self.componentProvider = componentProvider
-    }
-    
-    init(componentProvider: @escaping () -> (IChatCoordinatorComponent)) {
+    public init(componentProvider: @escaping @autoclosure () -> ChatCoordinatorComponent) {
         self.componentProvider = componentProvider
     }
     
@@ -17,12 +12,8 @@ public class ChatCoordinatorAssembly: IChatCoordinatorAssembly {
         let component = componentProvider()
         let coordinator = ChatCoordinator(
             scope: component,
-            chatListAssembly: ChatListAssembly {
-                component.chatListComponent
-            },
-            chatAssembly: ChatAssembly {
-                component.chatComponent
-            }
+            chatListAssembly: component.chatListAssembly,
+            chatAssembly: component.chatAssembly
         )
         return coordinator
     }

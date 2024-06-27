@@ -1,14 +1,10 @@
 import Foundation
 
-protocol IChatListAssembly {
-    func assemble() -> UIViewController
-}
-
-class ChatListAssembly: IChatListAssembly {
+public class ChatListAssembly {
     
-    private let componentProvider: () -> (IChatListComponent)
+    private let componentProvider: () -> (ChatListComponent)
     
-    init(componentProvider: @escaping () -> (IChatListComponent)) {
+    init(componentProvider: @escaping @autoclosure () -> (ChatListComponent)) {
         self.componentProvider = componentProvider
     }
     

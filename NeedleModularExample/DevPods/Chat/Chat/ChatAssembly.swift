@@ -1,20 +1,21 @@
 import Foundation
 
-protocol IChatAssembly {
-    func assemble() -> UIViewController
-}
+public class ChatAssembly {
 
-class ChatAssembly: IChatAssembly {
+    private let componentProvider: () -> (ChatComponent)
     
-    private let componentProvider: () -> (IChatComponent)
-    
-    init(componentProvider: @escaping () -> (IChatComponent)) {
+    public init(componentProvider: @escaping @autoclosure () -> (ChatComponent)) {
         self.componentProvider = componentProvider
     }
     
-    func assemble() -> UIViewController {
+    public func assemble() -> UIViewController {
         let component = componentProvider()
-        let presenter = ChatPresenter(scope: component, logger: component.logger, chatService: component.chatService)
+        let presenter = ChatPresenter(
+            scope: component,
+            logger: component.logger,
+            chatService: component.chatService,
+            chatSubmoduleAssembly: component.chatSubmoduleAssembly
+        )
         let viewController = ChatViewController(presenter: presenter)
         return viewController
     }

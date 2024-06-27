@@ -13,10 +13,6 @@
 		9B43840A291B040000CBE99F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B438408291B040000CBE99F /* Main.storyboard */; };
 		9B43840C291B040400CBE99F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B43840B291B040400CBE99F /* Assets.xcassets */; };
 		9B43840F291B040400CBE99F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B43840D291B040400CBE99F /* LaunchScreen.storyboard */; };
-		9B43841A291B10CF00CBE99F /* ApplicationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B438419291B10CF00CBE99F /* ApplicationComponent.swift */; };
-		9B43841E291B12DB00CBE99F /* NeedleGenerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43841D291B12DB00CBE99F /* NeedleGenerated.swift */; };
-		9B438444291B900300CBE99F /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B438443291B900300CBE99F /* ApplicationCoordinator.swift */; };
-		9B438446291B906300CBE99F /* ApplicationCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B438445291B906300CBE99F /* ApplicationCoordinatorAssembly.swift */; };
 		A75245E881F6B89707155877 /* Pods_NeedleModularExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29377C098405E31AF6864EB /* Pods_NeedleModularExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,10 +26,6 @@
 		9B43840B291B040400CBE99F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B43840E291B040400CBE99F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B438410291B040400CBE99F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B438419291B10CF00CBE99F /* ApplicationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationComponent.swift; sourceTree = "<group>"; };
-		9B43841D291B12DB00CBE99F /* NeedleGenerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedleGenerated.swift; sourceTree = "<group>"; };
-		9B438443291B900300CBE99F /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
-		9B438445291B906300CBE99F /* ApplicationCoordinatorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorAssembly.swift; sourceTree = "<group>"; };
 		CC42A86CB1987E302EB119FF /* Pods-NeedleModularExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeedleModularExample.debug.xcconfig"; path = "Target Support Files/Pods-NeedleModularExample/Pods-NeedleModularExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D29377C098405E31AF6864EB /* Pods_NeedleModularExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeedleModularExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -79,8 +71,6 @@
 		9B438401291B040000CBE99F /* NeedleModularExample */ = {
 			isa = PBXGroup;
 			children = (
-				9B43841D291B12DB00CBE99F /* NeedleGenerated.swift */,
-				9B43841B291B10D600CBE99F /* Application */,
 				9B438402291B040000CBE99F /* AppDelegate.swift */,
 				9B438404291B040000CBE99F /* SceneDelegate.swift */,
 				9B438406291B040000CBE99F /* ViewController.swift */,
@@ -90,16 +80,6 @@
 				9B438410291B040400CBE99F /* Info.plist */,
 			);
 			path = NeedleModularExample;
-			sourceTree = "<group>";
-		};
-		9B43841B291B10D600CBE99F /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				9B438419291B10CF00CBE99F /* ApplicationComponent.swift */,
-				9B438443291B900300CBE99F /* ApplicationCoordinator.swift */,
-				9B438445291B906300CBE99F /* ApplicationCoordinatorAssembly.swift */,
-			);
-			path = Application;
 			sourceTree = "<group>";
 		};
 		C5BB5B3E920F83E256E05CC9 /* Pods */ = {
@@ -119,7 +99,6 @@
 			buildConfigurationList = 9B438413291B040400CBE99F /* Build configuration list for PBXNativeTarget "NeedleModularExample" */;
 			buildPhases = (
 				64ECE859E7E2DD3041E58EDB /* [CP] Check Pods Manifest.lock */,
-				9B43841C291B111300CBE99F /* Needle */,
 				9B4383FB291B040000CBE99F /* Sources */,
 				9B4383FC291B040000CBE99F /* Frameworks */,
 				9B4383FD291B040000CBE99F /* Resources */,
@@ -203,24 +182,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9B43841C291B111300CBE99F /* Needle */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Needle;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which needle; then\n    SOURCEKIT_LOGGING=0 && needle generate NeedleModularExample/NeedleGenerated.swift $SRCROOT/NeedleModularExample\nelse\n  echo \"warning: Needle not installed, download from https://github.com/uber/needle using Homebrew\"\nfi\n";
-		};
 		A6D200044407E09C5B87C443 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,13 +206,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B43841A291B10CF00CBE99F /* ApplicationComponent.swift in Sources */,
 				9B438407291B040000CBE99F /* ViewController.swift in Sources */,
 				9B438403291B040000CBE99F /* AppDelegate.swift in Sources */,
 				9B438405291B040000CBE99F /* SceneDelegate.swift in Sources */,
-				9B43841E291B12DB00CBE99F /* NeedleGenerated.swift in Sources */,
-				9B438446291B906300CBE99F /* ApplicationCoordinatorAssembly.swift in Sources */,
-				9B438444291B900300CBE99F /* ApplicationCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
